@@ -1,6 +1,8 @@
 const Improvement = require('../models/improvement');
 const Bug = require('../models/Bug');
 
+
+// to add new improvement to bug
 module.exports.add = async function(req,res){
     try {
         let bug = await Bug.findById(req.params.bug);

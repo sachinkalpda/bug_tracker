@@ -12,8 +12,10 @@ passport.use(new LocalStrategy({
         passReqToCallback : true,
     },async function(req,email,password,done){
         try {
+            // getting requested user
             let user = await User.findOne({email : email});
-            // console.log(user);
+
+            // authenticating
             if(!user || !bcrypt.compareSync(password, user.password)){
                 req.flash('error','Invalid Username/Password');
                 return done(null, false);
@@ -42,7 +44,7 @@ passport.deserializeUser(async function(id,done){
     }
 });
 
-
+// middleware for checking user is authenticated or not
 passport.checkAuthentication = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
@@ -50,7 +52,7 @@ passport.checkAuthentication = function(req,res,next){
     return res.redirect('/user/login');
 }
 
-
+// setting user information to locals
 passport.setAuthenticatedUser = function(req,res,next){
 
     if(req.isAuthenticated()){

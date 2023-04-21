@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+
+// to render the register page
 module.exports.register = function(req,res){
     if(req.user){
         return res.redirect('back');
@@ -8,6 +10,8 @@ module.exports.register = function(req,res){
         title : 'Register | Bug Tracker'
     });
 }
+
+// for register a new user to system
 
 module.exports.addUser = async function(req,res){
 
@@ -32,7 +36,7 @@ module.exports.addUser = async function(req,res){
     }
 }
 
-
+// to render the login page
 
 module.exports.login = function(req,res){
     if(req.user){
@@ -44,11 +48,15 @@ module.exports.login = function(req,res){
 }
 
 
+// redirecting to home page authenticated user
+
 module.exports.createSession = function(req,res){
     req.flash('success','Login Successfully');
     return res.redirect('/');
 }
 
+
+// for logout the user
 
 module.exports.logout = function(req,res){
     req.logout(function (err) {
@@ -61,6 +69,7 @@ module.exports.logout = function(req,res){
     });
 }
 
+// for view the all users information
 
 module.exports.viewAll = async function(req,res){
     try {

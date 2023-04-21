@@ -1,5 +1,6 @@
 const Project = require('../models/project');
 
+// function for homepage
 module.exports.home = async function(req,res){
     try {
         let projects = await Project.find({}).populate('user');

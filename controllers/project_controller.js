@@ -2,6 +2,9 @@ const Project = require('../models/project');
 const Label = require('../models/label');
 const Bug = require('../models/Bug');
 const Improvement = require('../models/improvement');
+
+
+// for create a new project
 module.exports.createProject = async function(req,res){
     try {
         let project = await Project.create({
@@ -22,6 +25,8 @@ module.exports.createProject = async function(req,res){
     }
 }   
 
+
+// for showing details of project
 
 module.exports.view = async function(req,res){
     try {
@@ -56,6 +61,8 @@ module.exports.view = async function(req,res){
     }
 }
 
+
+// for delete the project
 
 module.exports.delete = async function(req,res){
     try {

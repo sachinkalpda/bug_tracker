@@ -1,5 +1,7 @@
 const Label = require('../models/label');
 
+// for add a new label
+
 module.exports.add = async function(req,res){
     console.log(req.body);
     try {
@@ -24,6 +26,8 @@ module.exports.add = async function(req,res){
     }
     
 }
+
+// ajax request to fetch lables
 
 module.exports.getLabel = async function(req,res){
     try {

@@ -2,6 +2,9 @@ const Project = require('../models/project');
 const Bug = require('../models/Bug');
 const Label = require('../models/label');
 
+
+// to show a create bug page
+
 module.exports.addBug = async function(req,res){
     try {
         let project = await Project.findById(req.params.id).populate('user');
@@ -25,6 +28,7 @@ module.exports.addBug = async function(req,res){
     
 }
 
+// to create a new bug
 module.exports.create = async function(req,res){
     try {
         if(req.body.label == ''){
@@ -71,7 +75,7 @@ module.exports.create = async function(req,res){
     }
 }
 
-
+// for ajax request for filter by label
 
 module.exports.filter = async function(req,res){
     try {
@@ -93,6 +97,8 @@ module.exports.filter = async function(req,res){
     }
 }
 
+// for ajax request to search the bug
+
 module.exports.search = async function(req,res){
     try {
         let bugs = await Bug.find({
@@ -113,6 +119,8 @@ module.exports.search = async function(req,res){
         return;
     }
 }
+
+// for view the bug information
 
 module.exports.view = async function(req,res){
     try {
@@ -144,6 +152,8 @@ module.exports.view = async function(req,res){
     }
 }
 
+
+// for close the bug
 
 module.exports.close = async function(req,res){
     try {

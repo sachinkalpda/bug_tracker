@@ -1,7 +1,10 @@
 const express = require('express');
 const port = 8000;
  
+require('dotenv').config();
 const app = express();
+
+// for datetime formatting
 app.locals.moment = require('moment');
 
 const db = require('./config/mongoose');
@@ -42,7 +45,7 @@ app.set('views','./views');
 // use session
 app.use(session({
     name : 'bug tracker',
-    secret: 'bug tracker',
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: { 
