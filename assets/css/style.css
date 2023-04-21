@@ -3,6 +3,13 @@
     margin: 0;
     padding: 0;
 }
+.bg{
+    background-image: url('/images/bg.jpg');
+    background-position: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
 
 /* login page styling */
 .login-wrapper{
@@ -61,6 +68,14 @@ header{
     font-size: 20px;
     font-weight: 500;
 }
+.nav-logo a{
+    text-decoration: none;
+    color: #000;
+}
+.nav-logo a:hover{
+    text-decoration: none;
+    color: #000;
+}
 .nav-center{
     flex:0 0 50%;
 }
@@ -109,7 +124,30 @@ header{
 .project-details h2{
     font-size: 24px;
 }
+.project-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.project-details-header a{
+    color: #fff;
+    text-decoration: none;
+}
+.project-details-title{
+    font-weight: 500;
+}
+.project-details-title h2{
+    margin-bottom: 0;
+    line-height: 1;
+
+}
+.project-details-title span{
+    font-size: 15px;
+    color: grey;
+    text-decoration: underline;
+}
 .project-details p{
+    margin-top: 1rem;
     text-align: justify;
 }
 .label-card{
@@ -119,7 +157,15 @@ header{
 }
 .label-card h5{
     font-size: 18px;
-    margin-bottom: 1rem;
+}
+.label-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.label-heading i{
+    color: lightblue;
+    cursor: pointer;
 }
 .label-item{
     margin: 10px 0px;
@@ -131,6 +177,14 @@ header{
     min-height: 70vh;
     padding: 10px 5px;
     margin-top: 1rem;
+}
+.issue-container a{
+    text-decoration: none;
+    color: #000;
+    transition: all 0.2s ease-in;
+}
+.issue-container a:hover{
+    color: blue;
 }
 .issue-container-title{
     font-size: 16px;
@@ -149,13 +203,13 @@ header{
     display: inline-block;
     color: grey;
     font-size: 14px;
-    margin-bottom: 1rem;
 }
 .issue-title{
     font-weight: 500;
     margin-bottom: 0rem;
 }
 .issue-footer{
+    margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -177,6 +231,12 @@ header{
     border-radius: 5px;
 }
 .author{
+    color: #000;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 0.5rem;
+}
+.author span{
     font-size: 15px;
     text-decoration: underline;
     color: grey;
@@ -200,30 +260,8 @@ header{
     border-radius: 5px;
     padding: 5px;
     display: flex;
-    flex-direction: wrap;
-}
-.label-container .label{
-    background-color: orangered;
-    color: #fff;
-    display: block;
-    border-radius: 5px;
-    padding: 2px 5px;
-    font-size: 13px;
-    margin: 0px 5px;
-}
-.label-container .label::after{
-    font-family: "Font Awesome 5 Free";
-    -webkit-font-smoothing: antialiased;
-    font: var(--fa-font-solid);
-    text-rendering: auto;
-    display: inline-block;
-    content: '\f00d';
-    color: red;
-    position: absolute; 
-    margin-left: -2px;
-    margin-top: -8px;
-    cursor: pointer;
-    font-size: 15px;
+    flex-wrap: wrap;
+    min-height: 35px;
 }
 
 .label-form{
@@ -245,4 +283,75 @@ header{
 .label-button-group{
     position: absolute;
     right: 0;
+}
+
+.label-item-bug{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.label-item-bug i{
+    cursor: pointer;
+    color: red;
+}
+.search{
+    cursor: pointer;
+}
+
+
+/* bug page styling */
+.issue-details{
+    margin: 1rem 0rem;
+}
+.issue-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.issue-details-header h3{
+    font-size: 24px;
+    margin-bottom: 0;
+}
+.issue-details-title{
+    font-weight: 500;
+}
+.issue-details-title span{
+    font-weight: 400;
+    color: grey;
+    text-decoration: underline;
+}
+.issue-status{
+    padding: 5px 8px;
+    color: #fff;
+    border-radius: 5px;
+}
+.improvements{
+    border-top : 1px solid rgba(0, 0, 0, 0.3);
+    padding: 1rem 0rem;
+}
+
+.improvements h5{
+    font-size: 18px;
+}
+
+.improvement-item{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0.5rem 0rem;
+}
+.improvement-header h6{
+    font-weight: 500;
+    margin-bottom: 0;
+    padding: 0;
+    line-height: 0.6;
+}
+.improvement-header span{
+    font-weight: 400;
+    font-size: 13px;
+}
+.improvement-body{
+    margin-top: 0.5rem;
 }

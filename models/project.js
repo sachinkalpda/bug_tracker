@@ -20,7 +20,14 @@ const projectSchema = mongoose.Schema({
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Bug'
         }
-    ]
+    ],
+    closed : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Bug'
+        }
+    ],
+
 },
 {
     timestamps : true,

@@ -12,6 +12,9 @@ router.use('/user',require('./user'));
 router.use('/project',require('./project'));
 router.use('/bug',require('./bug'));
 
+router.use('/label',require('./label'));
+router.use('/improvement',require('./improvement'));
+
 
 
 

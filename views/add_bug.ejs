@@ -3,36 +3,48 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="project-details">
-                    <h2><%= project.title %></h2>
+                    <div class="project-details-header">
+                        <div class="project-details-title">
+                            <h2><%= project.title  %></h2>
+                            Created By <span><%= project.user.name %></span>
+                        </div>
+                        <a href="/project/view/<%= project.id %>" class="btn btn-info">Go Back To Project</a>
+                    </div>
                     <p><%= project.description %></p>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="label-card">
-                            <h5>Filter By</h5>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
+                            <div class="form-group">
+                                <label for="new-label">Add Label</label>
+                                <div class="label-form">
+                                    <select class="form-custom" id="label-list" placeholder="Select Label">
+                                        <option hidden>Select Label</option>
+                                        <% for(let label of labels){ %>
+                                            <option value="<%= label.id %>"><%= label.title %></option>
+                                        <%} %>
+                                     </select>
+                                    <div class="label-button-group">
+                                        <button id="addLabelTo" type="button">Add Label</button>
+                                    </div>
+                                </div>
+                                
                             </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
+                            <div class="label-list-bug">
+                                
                             </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
-                            </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
-                            </div>
+                            
 
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="issue-option-bar">
                                     <h3>Add New Bug</h3>
-                                    <span></span>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLabel">New Label</button>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -48,33 +60,9 @@
                                         <textarea name="description" class="form-custom" id="description" cols="30"
                                             rows="10" placeholder="Issue Description.."></textarea>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="labeles">Labels</label>
-                                                <input type="hidden" name="labels[]" id="labels">
-                                                <div class="label-container">
-                                                    <div class="label">New</div>
-                                                    <div class="label">New</div>
-                                                    <div class="label">New</div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="new-label">Add Label</label>
-                                                <div class="label-form">
-                                                    <input type="text" class="form-custom" name="add_label" id="new-label"
-                                                    placeholder="Search Label..">
-                                                    <div class="label-button-group">
-                                                        <button>Add Label</button>
-                                                        <button>Add New</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="label" value="" id="label-hidden">
+                                    <!-- <input type="hidden" name="label[]" value="2"> -->
+                                    
                                     <button type="submit" class="btn btn-primary mt-3">Raise Issue</button>
 
                                 </form>
@@ -86,3 +74,31 @@
         </div>
     </div>
 </main>
+
+
+<!-- for Add New Label -->
+<div class="modal fade" id="addLabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Label</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="POST" id="addLabelForm">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="label">Add Label</label>
+                    <input id="label" name="label" class="form-custom w-100"
+                        placeholder="Add Label..">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Add New</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

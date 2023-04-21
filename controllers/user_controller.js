@@ -60,3 +60,23 @@ module.exports.logout = function(req,res){
         return res.redirect('/user/login');
     });
 }
+
+
+module.exports.viewAll = async function(req,res){
+    try {
+        let users = await User.find( { _id : {$nin : req.user._id} });
+        console.log(users);
+        if(users){
+            return res.render('users',{
+                title : 'All Users | Homepage',
+                users :  users
+            });
+        }
+        req.flash('error','Something Went Wrong!');
+        return res.redirect('back');
+        
+    } catch (error) {
+        console.log('Error in User',error);
+        return;
+    }
+}

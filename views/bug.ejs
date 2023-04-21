@@ -1,0 +1,93 @@
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="project-details">
+                    <div class="project-details-header">
+                        <div class="project-details-title">
+                            <h2><%= bug.project.title  %></h2>
+                            Created By <span><%= bug.project.user.name %></span>
+                        </div>
+                        <a href="/project/view/<%= bug.project.id %>" class="btn btn-info">Go Back To Project</a>
+                    </div>
+                    <p><%= bug.project.description %></p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="label-card">
+                            <h5>Bug Labels</h5>
+                            <% for(let label of bug.labels){ %>
+                            <div class="label-item">
+                                 <%= label.title %>
+                            </div>
+                            <%} %>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="issue-option-bar">
+                                    <h3>Issue Details</h3>
+                                    <% if((bug.user.id == locals.user.id || bug.project.user.id == locals.user.id) && bug.status != 'closed') { %>
+                                    <a href="/bug/close/<%= bug.id %>" class="btn btn-danger">Close Issue</a>
+                                    <%}  %>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="issue-details">
+                                    <div class="issue-details-header">
+                                        <div class="issue-details-title">
+                                            <h3><%= bug.title  %></h3>
+                                            Raised By <span><%= bug.user.name%></span>
+                                        </div>
+                                        <div class="issue-status <%= (bug.status=='closed')? 'bg-danger':'bg-success' %>">
+                                            <%= bug.status %>
+                                        </div>
+                                    </div>
+                                    <h6 class="mt-3">Description</h6>
+                                    <p><%= bug.description %></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="improvements">
+                                    <h5>Improvements(<%= bug.improvements.length %>)</h5>
+                                    <form action="/improvement/add/<%= bug.id %>" method="POST">
+                                        <div class="imporovement-form">
+                                            <div class="form-group d-flex">
+                                                <input type="text" name="improvement" class="form-custom" placeholder="Add Improvement..">
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </div>
+                                            
+                                        </div>
+                                    </form>
+                                    <div class="improvement-list">
+
+                                        <% if(bug.improvements.length == 0){ %>
+                                            No Data Found!
+                                        <%} %>
+
+                                        <% for(let improvement of bug.improvements) {%>
+                                        <div class="improvement-item">
+                                            <div class="improvement-header">
+                                                <h6><%= improvement.user.name %></h6>
+                                               <span><%= moment(improvement.createdAt).fromNow() %></span>
+                                               
+                                            </div>
+                                            <div class="improvement-body">
+                                                <p><%= improvement.content %></p>
+                                            </div>
+                                        </div>
+                                        <% }%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

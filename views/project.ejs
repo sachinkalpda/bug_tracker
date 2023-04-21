@@ -3,28 +3,30 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="project-details">
-                    <h2><%= project.title %></h2>
-                    <p><%= project.description %></p>
+                    <div class="project-details-title">
+                        <h2><%= project.title  %></h2>
+                        Created By <span><%= project.user.name %></span>
+                    </div>
+                    <p>
+                        <%= project.description %>
+                    </p>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="label-card">
-                            <h5>Filter By</h5>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
+                            <div class="label-heading">
+                                <h5>Filter By</h5>
+                                <i class="fa-solid fa-filter" id="filterBy" data-project="<%= project.id %>"
+                                    title="Add Filter"></i>
                             </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
-                            </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
-                            </div>
-                            <div class="label-item">
-                                <input type="checkbox"> Filter 1
-                            </div>
-                           
+                            <% for(let label of labels){ %>
+                                <div class="label-item">
+                                    <input type="checkbox" class="check-label" value="<%= label.id %>">
+                                    <%=label.title %>
+                                </div>
+                                <%} %>
                         </div>
                     </div>
                     <div class="col-md-10">
@@ -32,90 +34,80 @@
                             <div class="col-md-12">
                                 <div class="issue-option-bar">
                                     <div class="search-box">
-                                        <input type="text" class="form-custom" placeholder="Search Issue...">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" id="searchInput" class="form-custom" placeholder="Search Issue...">
+                                        <i class="fa-solid fa-magnifying-glass search" data-project="<%= project.id %>"></i>
                                     </div>
-                                    <span>Totol Issues(9)</span>
+                                    <span>Totol Issues(<%= project.bugs.length+project.closed.length %>)</span>
                                     <a href="/bug/add/<%= project.id %>" class="btn btn-primary">Add an Issue</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="issue-container">
-                                    <div class="issue-container-title">4 Todo</div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-open">Open</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-open">Open</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-open">Open</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-open">Open</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
+                                    <div class="issue-container-title"><span id="open-issue-count">
+                                            <%= project.bugs.length %>
+                                        </span> Todo</div>
+                                    
+                                            <div class="bug-list">
+                                                <% if(project.bugs.length==0){ %>
+                                                    <h5 class="mt-3">No Data Found</h5>
+                                                <%} %>
+                                                <% for(let bug of project.bugs) { %>
+                                                    <a href="/bug/view/<%= bug.id %>">
+                                                        <div class="issue-card">
+                                                            <p class="issue-title">
+                                                                <%= bug.title %>
+                                                            </p>
+                                                            <span>
+                                                                <%= moment(bug.createdAt).fromNow() %>
+                                                            </span>
+                                                            <div class="issue-footer">
+                                                                <div class="status-open">Open</div>
+                                                                <div class="author">Raised By <span>
+                                                                        <%= bug.user.name %>
+                                                                    </span></div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <%} %>
+                                            </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="issue-container">
-                                    <div class="issue-container-title">4 Done</div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-closed">Closed</div>
-                                            <div class="author">Author</div>
-                                        </div>
+                                    <div class="issue-container-title">
+                                        <span id="closed-issue-count">
+                                            <%= project.closed.length %>
+                                        </span> Done
                                     </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-closed">Closed</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-closed">Closed</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
-                                    <div class="issue-card">
-                                        <p class="issue-title">Lorem ipsum dolor sit amet.</p>
-                                        <span>Raised 3 days ago</span>
-                                        <div class="issue-footer">
-                                            <div class="status-closed">Closed</div>
-                                            <div class="author">Author</div>
-                                        </div>
-                                    </div>
+                                    
+                                            <div class="bug-list-closed">
+                                                <% if(project.closed.length==0){ %>
+                                                    <h5 class="mt-3">No Data Found</h5>
+                                                    <%} %>
+                                                <% for(let bug of project.closed) { %>
+                                                    <a href="/bug/view/<%= bug.id %>">
+                                                        <div class="issue-card">
+                                                            <p class="issue-title">
+                                                                <%= bug.title %>
+                                                            </p>
+                                                            <span>
+                                                                <%= moment(bug.updatedAt).fromNow() %>
+                                                            </span>
+                                                            <div class="issue-footer">
+                                                                <div class="status-closed">Closed</div>
+                                                                <div class="author">Raised By <span>
+                                                                        <%= bug.user.name %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <%} %>
+                                            </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

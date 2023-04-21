@@ -1,0 +1,40 @@
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="projects-page-title">
+                    <h2>All Users</h2>
+                    <!-- <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProject">Create Project</a> -->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User' Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Joined On</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                      
+                     <% users.forEach(function(user, i){ %>
+                      <tr>
+                        <th scope="row"><%= i+1 %></th>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= moment(user.createdAt).fromNow() %> </td>
+                      </tr>
+                      <% }) %>
+                      
+                    </tbody>
+                  </table>
+                  <% if(users.length == 0){ %>
+                    <h3>No Data Found!</h3>
+                  <%} %>
+            </div>
+        </div>
+    </div>
+</main>

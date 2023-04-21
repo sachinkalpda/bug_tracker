@@ -15,19 +15,25 @@
                         <th scope="col">Project Name</th>
                         <th scope="col">Author</th>
                         <th scope="col">Issues</th>
+                        <th scope="col">Open</th>
+                        <th scope="col">Closed</th>
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
+                    
                     <tbody>
+                      
                      <% projects.forEach(function(project, i){ %>
                       <tr>
                         <th scope="row"><%= i+1 %></th>
                         <td><%= project.title %></td>
                         <td><%= project.user.name %></td>
-                        <td></td>
+                        <td><%= project.bugs.length + project.closed.length %></td>
+                        <td><%= project.bugs.length %></td>
+                        <td><%= project.closed.length %></td>
                         <td><a href="/project/view/<%= project._id %>" title="View Project"><i class="fa-regular fa-eye"></i></a>
                             <% if(locals.user.id == project.user.id){ %>
-                                <a href="#" class="delete" title="Delete Project"><i class="fa-regular fa-trash-can text-danger"></i></a>
+                                <a href="/project/delete/<%= project._id %>" class="delete" title="Delete Project"><i class="fa-regular fa-trash-can text-danger"></i></a>
                             <%} %>
                         </td>
                       </tr>
@@ -35,6 +41,9 @@
                       
                     </tbody>
                   </table>
+                  <% if(projects.length == 0){ %>
+                    <h3>No Data Found!</h3>
+                  <%} %>
             </div>
         </div>
     </div>

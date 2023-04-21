@@ -30,6 +30,12 @@ const bugSchema = mongoose.Schema({
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Label'
         }
+    ],
+    improvements : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Improvement'
+        }
     ]
 },{
     timestamps : true,
