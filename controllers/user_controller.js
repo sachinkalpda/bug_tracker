@@ -74,7 +74,6 @@ module.exports.logout = function(req,res){
 module.exports.viewAll = async function(req,res){
     try {
         let users = await User.find( { _id : {$nin : req.user._id} });
-        console.log(users);
         if(users){
             return res.render('users',{
                 title : 'All Users | Homepage',

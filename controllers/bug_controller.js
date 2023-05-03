@@ -75,13 +75,13 @@ module.exports.create = async function(req,res){
     }
 }
 
-// for ajax request for filter by label
+//  ajax request for filter by label
 
 module.exports.filter = async function(req,res){
     try {
         let bugs = await Bug.find({
             project : req.body.project,
-            labels : { $in : req.body.labels}
+            labels :  {$all : req.body.labels}
         }).populate('user');
         if(req.xhr){
             return res.json(200,{
@@ -105,7 +105,7 @@ module.exports.search = async function(req,res){
             project : req.body.project,
             title : new RegExp(req.body.query, 'i')
         }).populate('user');
-        console.log(bugs);
+        // console.log(bugs);
         if(req.xhr){
             return res.json(200,{
                 message : 'Success',

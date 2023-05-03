@@ -21,7 +21,6 @@
                                 <label for="new-label">Add Label</label>
                                 <div class="label-form">
                                     <select class="form-custom" id="label-list" placeholder="Select Label">
-                                        <option hidden>Select Label</option>
                                         <% for(let label of labels){ %>
                                             <option value="<%= label.id %>"><%= label.title %></option>
                                         <%} %>

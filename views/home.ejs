@@ -31,7 +31,7 @@
                         <td><%= project.bugs.length + project.closed.length %></td>
                         <td><%= project.bugs.length %></td>
                         <td><%= project.closed.length %></td>
-                        <td><a href="/project/view/<%= project._id %>" title="View Project"><i class="fa-regular fa-eye"></i></a>
+                        <td><a href="/project/view/<%= project._id %>" title="View Project"><i class="fa-solid fa-circle-info"></i></a>
                             <% if(locals.user.id == project.user.id){ %>
                                 <a href="/project/delete/<%= project._id %>" class="delete" title="Delete Project"><i class="fa-regular fa-trash-can text-danger"></i></a>
                             <%} %>

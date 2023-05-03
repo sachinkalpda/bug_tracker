@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
 
+    // for render the bugs on project details page
     function appendBug(bugs){
         let buglist = $('.bug-list');
         buglist.html('');
@@ -21,7 +22,7 @@ $(document).ready(function(){
         </a>`);
         }
     }
-
+    // for render the bugs on project details page
     function appendClosed(bugs){
         let buglist = $('.bug-list-closed');
         buglist.html('');
@@ -41,6 +42,8 @@ $(document).ready(function(){
         </a>`);
         }
     }
+
+    // ajax request to filter the data
     $('#filterBy').on('click',function(e){
         e.preventDefault();
         let projectId = $(this).data('project');
@@ -91,7 +94,7 @@ $(document).ready(function(){
         });
     })
 
-
+    // ajax request to search the bugs
     $('.search').on('click',function(){
         let input = $('#searchInput');
         let query = input.val();
@@ -134,6 +137,8 @@ $(document).ready(function(){
         });
     });
 
+
+    // ajax request to add label to new bug
     $('#addLabelForm').on('submit',function(e){
         e.preventDefault();
         let values = $(this).serialize();
@@ -178,6 +183,7 @@ $(document).ready(function(){
         
     });
 
+    // for removing the label from the new bug
 
     $(document).on('click','.remove-label',function(){
         let labelId = $(this).data('id');
@@ -186,7 +192,7 @@ $(document).ready(function(){
 
     });
 
-
+    // function for adding label to new bug
     function addLabel(id){
         let input = $('#label-hidden');
         let inputValue = input.val();
